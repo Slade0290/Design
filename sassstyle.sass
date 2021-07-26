@@ -1,0 +1,141 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: black;
+  font-family: system-ui, Georgia, serif;
+}
+
+.section {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border: inset red 1px solid;
+  transition: 1s ease-out;
+  background: white;
+  transform: rotateY(180deg);
+}
+
+#content {
+  top: 0px;
+  bottom: 0px;
+  display: grid;
+  position: absolute;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.section div {
+  transition: 1s;
+  text-align: center;
+  margin: 0 auto;
+  top: 20vh;
+  position: relative;
+  width: 50%;
+  display: none;
+  color: #FFFFFF;
+  text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 0 1px #FFF, 
+              0 0 3px #FFF, 
+              0 0 5px #FFF, 
+              0 0 1px #49ff18,
+              0 0 3px #49ff18,
+              0 0 5px #49ff18,
+              inset 0 0 5px #49ff18;
+}
+
+.section div span {
+  animation: 1.5s infinite flicker alternate;
+}
+
+.square {
+  opacity: 1;
+  visibility: visible;
+  transition: 1s;
+  
+  &:hover .section {
+    transform: rotateY(0deg);
+    
+    & div {
+    display: block;
+  }
+  }
+}
+
+.section div:hover {
+  cursor: pointer;
+  padding-left: 25px;
+  padding-right: 25px;
+  letter-spacing: 5px;
+  box-shadow: 0 0 5px #FFF, 
+              0 0 15px #FFF, 
+              0 0 25px #FFF, 
+              inset 0 0 25px #FFF, 
+              0 0 5px #49ff18,
+              0 0 15px #49ff18,
+              0 0 25px #49ff18,
+              inset 0 0 25px #49ff18;
+}
+
+.close {
+  background: rgba(150,150,150,0.5);
+  padding: 10px;
+  border-radius: 50%;
+  position: absolute;
+  transition: 1s;
+  margin-left: 3%;
+  margin-top: 3%;
+  border: 1px solid rgba(150,150,150,0.8);
+  visibility: hidden;
+  display: none;
+  &:hover {
+    background: rgba(242,100,100,0.8);
+    border: 1px solid rgba(255,150,150,0.8);
+    cursor: pointer;
+  }
+}
+
+
+
+.section:hover .close {
+  display: inline;
+}
+
+.section-1 {
+}
+
+.section-2 {
+}
+
+.section-3 {
+}
+
+.section-4 {
+}
+
+.section-5 {
+}
+
+.section-6 {
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 35%, 53%, 57%, 100% {
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #0fa,
+      0 0 80px #0fa,
+      0 0 90px #0fa,
+      0 0 100px #0fa,
+      0 0 150px #0fa;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
