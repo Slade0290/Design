@@ -11,16 +11,20 @@ body {
     margin: 0;
     padding: 0;
   }
-  
+
   .login-content {
     background: rgba(255,255,255,0.2);
     position: absolute;
     top: 30vh;
     padding: 8vh;
-    box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.2), inset 3px 3px 5px 1px rgba(255,255,255,0.3);
     transform: rotateY(0deg);
     transition: 1s;
-  }
+    border-width: 2px 0px 0px 2px;
+    border-color: rgba(255,255,255,0.5);
+    border-style: outset;
+    border-radius: 10px;
+  }  
   
   h1 {
     font-size: 1.5em;
@@ -28,10 +32,24 @@ body {
   }
   
   .login-content input {
-    background: rgba(10,10,10,0.5);
     color: white;
+    background: rgba(255,255,255,0.4);
+    border: none;
+    transition: 1s;
+    margin-bottom: 5px;
   }
   
+  .login-content input:focus {
+    outline: none;
+    border-bottom: 3px solid rgba(255,255,255,0.5);
+    transition: 0.2s;
+  }
+  
+  .login-content input::placeholder {
+    color: black;
+    font-family: system-ui, Georgia, serif;
+  }
+
   .btn-validate {
     text-align: center;
     padding: 10px;
