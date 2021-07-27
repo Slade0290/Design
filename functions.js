@@ -1,6 +1,7 @@
 
 function createSection() {
 	var content = document.getElementById("content")
+  content.style.display = "grid"
   content.style.gridTemplateColumns = "1fr 1fr 1fr"
   content.style.gridTemplateRows = "1fr 1fr"
 	var arr = []
@@ -24,7 +25,6 @@ function addSection(content, arr, titles, i) {
 	var section = document.createElement("section")
   section.setAttribute("id","section-"+i)
   section.classList.add("section")
-  section.style.background = "black"
   var div = document.createElement("div")
   div.onclick = function() {expendSquare(i, titles, content)};
   var letter = titles[i-1][getRandomInt(titles.length-1)]
@@ -60,10 +60,8 @@ function hideSection(i, val) {
 function wait(i, val) {
   setTimeout(function(){
     val.style.display = "none";
-    val.remove();
   }, 2000)
 }
-
 
 function removeAndRebuild(i) {
     var val = document.getElementById("square-"+i)
@@ -71,26 +69,27 @@ function removeAndRebuild(i) {
     createSection();
 }
 
-function justWait(time){
+function waitAndRemove(time, val){
   setTimeout(function(){
-      console.log("waiting...");
+    val.remove();
   }, time)
 }
 
 function expendSquare(index, titles, content) {
   for(let i = 1; i < titles.length+1; i++) {
-  	if(i != index) {
-    	var val = document.getElementById("square-"+i)  
-      hideSection(i, val)
-    	val.style.visibility = "hidden";
-      wait(i, val)
-    } else {
-    	justWait(i*200)
+    var val = document.getElementById("square-"+i)
+    hideSection(i, val)
+    val.style.visibility = "hidden";
+    wait(i, val)
+    if(i != index) {
+    	waitAndRemove(2000, val)
     }
   }
+  var val = document.getElementById("square-"+index)
   var close = document.getElementById("close-"+index)
-  var val = document.getElementById("square-"+index) 
   setTimeout(function(){
+  	val.style.visibility = "visible";
+    val.style.display = "block";
   	val.style.position = "absolute"
     val.style.top = 0
     val.style.bottom = 0
@@ -98,12 +97,16 @@ function expendSquare(index, titles, content) {
     val.style.right = 0
     val.style.height = window.innerHeight
     val.style.width = window.innerWidth
-  }, 1700)  
+  }, 2500)  
     setTimeout(function(){
+    val.style.opacity = 1;
   	content.style.gridTemplateColumns = "1fr"
   	content.style.gridTemplateRows = "1fr"
   	close.style.visibility = "visible"
-  }, 2000)  
+  }, 2700)
+  val.firstElementChild.children[1].onclick = function() {
+  	removeAndRebuild(index)
+  }
 }
 
 function createLampSection() {

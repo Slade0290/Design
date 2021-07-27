@@ -1,0 +1,64 @@
+body {
+  height: 500px;
+}
+#lamp {
+  width: 250px;
+  height: 250px;
+}
+#lamp-ray2 {
+  height: 0px;
+  width: 224px;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 150px solid white;
+  position: relative;
+  top: -80px;
+  opacity: 0.3;
+  z-index: -999;
+}
+
+#lamp-body {
+  margin-left: 50px;
+  height: 75px;
+  width: 112px;
+  background-color: antiquewhite;
+  border-radius: 79px 79px 0px 0px / 150px 150px 0px 0px;
+  box-shadow: inset 3px -10px 15px 10px rgba(0,0,0,0.3);  
+}
+#lamp-trigger-holder {
+  height: 10px;
+  width: 10px;
+  background-color: black;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: block;
+  transition: 0.5s;
+  background-clip: content-box;
+  padding: 0 20px 20px 20px;
+}
+#lamp-trigger {
+  height: 50px;
+  width: 3px;
+  background-color: darkgray;
+  margin: 0 auto;
+  transition: 0.5s;
+  display: block;  
+}
+#lamp-trigger-holder:hover {
+    cursor: pointer;
+ }
+ 
+ @keyframes turnlightonoff {
+   0% {
+     height: 50px;
+   }
+   30%{
+     height: 70px;
+   }
+   40% {
+     height: 75px;
+   }
+   100% {
+     height: 50px;     
+   }
+ }
