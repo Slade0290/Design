@@ -106,7 +106,7 @@ body {
     grid-template-rows: 1fr 1fr;
   }
     
-  .section div {
+  .section .title {
     transition: 1s;
     font-family: 'RetroSignature';
     font-size: 7vw;
@@ -132,8 +132,9 @@ body {
     */
   }
   
-  .section div:hover {
+  .section .title:hover {
     cursor: pointer;
+    /*
     padding-left: 25px;
     padding-right: 25px;
     letter-spacing: 5px;
@@ -145,9 +146,10 @@ body {
                 0 0 15px #49ff18,
                 0 0 25px #49ff18,
                 inset 0 0 25px #49ff18;
+      */
   }
   
-  .section div span {
+  .section .title span {
     animation: 1.5s infinite flicker alternate;
   }
   
@@ -155,6 +157,7 @@ body {
     opacity: 1;
     visibility: visible;
     transition: 1s;
+    width: 100%;
   }
     
   .close {
@@ -165,7 +168,7 @@ body {
     transition: 1s;
     margin-left: 3%;
     margin-top: 3%;
-    border: 1px solid rgba(150,150,150,0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
     visibility: hidden;
     display: none;
   }
@@ -173,10 +176,11 @@ body {
   .close:hover {
     background: rgba(242,100,100,0.8);
     border: 1px solid rgba(255,150,150,0.8);
+    cursor: pointer;
   }
   
   .section:hover .close {
-    display: inline;
+    display: block;
   }
     
   @keyframes flicker {
@@ -195,3 +199,45 @@ body {
       text-shadow: none;
     }
   }
+  
+.section-content {
+  text-align: center;
+  top: 40vh;
+  position: absolute;
+  width: 100vw;
+  background: rgba(255,255,255,0.2);
+  padding-bottom: 2%;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.countdown .number-content {
+  min-width: 5vw;
+  width: 5vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.countdown div .number {
+  font-size: 2.75em;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.countdown div .label {
+  text-transform: uppercase;
+}
+
+.section-content h1 {  
+  font-size: 1.75em;
+  text-transform: uppercase;
+}

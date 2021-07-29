@@ -5,7 +5,7 @@ function createSection() {
   content.style.gridTemplateColumns = "1fr 1fr 1fr"
   content.style.gridTemplateRows = "1fr 1fr"
 	var arr = []
-  var titles = ["Lamp", "Invaders", "Cellular", "Unknown", "Unknown", "Unknown"]
+  var titles = ["Lamp", "Invaders", "Cellular", "Countdown", "Unknown", "Unknown"]
   for(var i = 1; i < titles.length+1; i++) {
     arr.push(getRandomColor())
     addSection(content, arr, titles, i)
@@ -26,6 +26,8 @@ function addSection(content, arr, titles, i) {
   section.setAttribute("id","section-"+i)
   section.classList.add("section")
   var div = document.createElement("div")
+  div.setAttribute("id","title-" + i);
+  div.classList.add("title")
   div.onclick = function() {expendSquare(i, titles, content)};
   var letter = titles[i-1][getRandomInt(titles.length-1)]
   titles[i-1] = titles[i-1].replace(letter, "<span>"+letter+"</span>")
@@ -107,9 +109,22 @@ function expendSquare(index, titles, content) {
   val.firstElementChild.children[1].onclick = function() {
   	removeAndRebuild(index)
   }
+  setTimeout(function(){
+    createSectionContent(titles[index-1].replace("<span>", "").replace("</span>",""), index)    
+}, 2800)
 }
 
-function createLampSection() {
+function createSectionContent(sectionName, index) {
+  console.log("In createSectionContent")
+  console.log(sectionName)
+  console.log(index)
+  if(sectionName == "Countdown") {
+    console.log("In if sectionName == countdown")
+    createCountdown(index);
+  }
+}
+
+function createLampSection(index) {
 	var lamp = "<div id=\"lamp\">" +
 		  "<div id=\"lamp-body\"></div>" +
 		  "<div id=\"lamp-body-shadow\"></div>"+
@@ -117,6 +132,54 @@ function createLampSection() {
 		  "<div id=\"lamp-trigger-holder\"></div>"+
 		  "<div id=\"lamp-ray\"></div>"+
 			"</div>"
-  var section1 = document.getElementById("section-1")
+  var el = document.getElementById("section-" + index)
+  el.append(lamp)
+  console.log("END - createLampSection")
   
+}
+
+function createCountdown(index) {
+  var countdown = "<div id=\"countdown\" class=\"section-content\">" +
+  "<h1>Another world will be created in : </h1>" +
+    "<div class=\"countdown\">" +
+      "<div class=\"number-content\"><div id=\"days\" class=\"number\">*</div><div class=\"label\">days</div></div>" +
+      "<div class=\"number-content\"><div id=\"hours\" class=\"number\">*</div><div class=\"label\">hours</div></div>" +
+      "<div class=\"number-content\"><div id=\"minutes\" class=\"number\">*</div><div class=\"label\">minutes</div></div>" +
+      "<div class=\"number-content\"><div id=\"seconds\" class=\"number\">*</div><div class=\"label\">seconds</div></div>" +
+    "</div>" +
+  "</div>";
+  var el = document.getElementById("section-" + index);
+  el.insertAdjacentHTML( 'beforeend', countdown );
+  console.log("END - createCountdown")
+    
+  // Set the date we're counting down to
+  var countDownDate = new Date("Aug 24, 2021 15:37:25").getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+      
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+      
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+    // Output the result in an element with id="demo"
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+      
+    // If the count down is over, write some text 
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML = "EXPIRED";
+    }
+  }, 1000);
 }
