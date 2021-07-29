@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'RetroSignature';
+  src: url('fonts/RetroSignature.otf');  
+}
+
 body {
     background: linear-gradient(40deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
     display: flex;
@@ -103,17 +108,20 @@ body {
     
   .section div {
     transition: 1s;
+    font-family: 'RetroSignature';
+    font-size: 7vw;
     text-align: center;
     margin: 0 auto;
-    top: 20vh;
+    top: 15vh;
     position: relative;
     width: 50%;
     display: none;
     color: #FFFFFF;
     text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
-    border: 1px solid white;
     border-radius: 5px;
     padding: 15px;
+    /*
+    border: 1px solid white;
     box-shadow: 0 0 1px #FFF, 
                 0 0 3px #FFF, 
                 0 0 5px #FFF, 
@@ -121,18 +129,9 @@ body {
                 0 0 3px #49ff18,
                 0 0 5px #49ff18,
                 inset 0 0 5px #49ff18;
+    */
   }
   
-  .section div span {
-    animation: 1.5s infinite flicker alternate;
-  }
-  
-  .square {
-    opacity: 1;
-    visibility: visible;
-    transition: 1s;
-  }
-    
   .section div:hover {
     cursor: pointer;
     padding-left: 25px;
@@ -148,6 +147,16 @@ body {
                 inset 0 0 25px #49ff18;
   }
   
+  .section div span {
+    animation: 1.5s infinite flicker alternate;
+  }
+  
+  .square {
+    opacity: 1;
+    visibility: visible;
+    transition: 1s;
+  }
+    
   .close {
     background: rgba(150,150,150,0.5);
     padding: 10px;
