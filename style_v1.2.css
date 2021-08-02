@@ -92,7 +92,6 @@ body {
     width: 100%;
     border: inset red 1px solid;
     transition: 1s ease-out;
-    /* background: white; */
     transform: rotateY(180deg);
   }
   
@@ -120,33 +119,10 @@ body {
     text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
     border-radius: 5px;
     padding: 15px;
-    /*
-    border: 1px solid white;
-    box-shadow: 0 0 1px #FFF, 
-                0 0 3px #FFF, 
-                0 0 5px #FFF, 
-                0 0 1px #49ff18,
-                0 0 3px #49ff18,
-                0 0 5px #49ff18,
-                inset 0 0 5px #49ff18;
-    */
   }
   
   .section .title:hover {
     cursor: pointer;
-    /*
-    padding-left: 25px;
-    padding-right: 25px;
-    letter-spacing: 5px;
-    box-shadow: 0 0 5px #FFF, 
-                0 0 15px #FFF, 
-                0 0 25px #FFF, 
-                inset 0 0 25px #FFF, 
-                0 0 5px #49ff18,
-                0 0 15px #49ff18,
-                0 0 25px #49ff18,
-                inset 0 0 25px #49ff18;
-      */
   }
   
   .section .title span {
@@ -207,37 +183,4 @@ body {
   width: 100vw;
   background: rgba(255,255,255,0.2);
   padding-bottom: 2%;
-}
-
-.countdown {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-.countdown .number-content {
-  min-width: 5vw;
-  width: 5vw;
-  margin-left: 1vw;
-  margin-right: 1vw;
-  background: rgba(0,0,0,0.3);
-  border-radius: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 5px;
-}
-
-.countdown div .number {
-  font-size: 2.75em;
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-
-.countdown div .label {
-  text-transform: uppercase;
-}
-
-.section-content h1 {  
-  font-size: 1.75em;
-  text-transform: uppercase;
 }

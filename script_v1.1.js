@@ -1,4 +1,8 @@
 
+// Global var
+var onoff = [0,0,0];
+
+// On start
 window.onload = function(){ 
             
     var validate = document.getElementsByClassName("btn-validate")[0]

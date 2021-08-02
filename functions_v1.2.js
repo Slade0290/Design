@@ -1,11 +1,19 @@
 
+function getElById(id) {
+	return document.getElementById(id);
+}
+
+function getElByCl(cl, def = 0) {
+	return document.getElementsByClassName(cl)[def];
+}
+
 function createSection() {
 	var content = document.getElementById("content")
   content.style.display = "grid"
   content.style.gridTemplateColumns = "1fr 1fr 1fr"
   content.style.gridTemplateRows = "1fr 1fr"
 	var arr = []
-  var titles = ["Lamp", "Invaders", "Cellular", "Countdown", "Unknown", "Unknown"]
+  var titles = ["Lamp", "Invaders", "Cellular", "Countdown", "Upgrade", "Error"]
   for(var i = 1; i < titles.length+1; i++) {
     arr.push(getRandomColor())
     addSection(content, arr, titles, i)
@@ -61,8 +69,10 @@ function hideSection(i, val) {
 
 function wait(i, val) {
   setTimeout(function(){
-    val.style.display = "none";
-  }, 2000)
+    if(val != null) {
+      val.style.display = "none";
+    }
+  }, i)
 }
 
 function removeAndRebuild(i) {
@@ -82,7 +92,7 @@ function expendSquare(index, titles, content) {
     var val = document.getElementById("square-"+i)
     hideSection(i, val)
     val.style.visibility = "hidden";
-    wait(i, val)
+    wait(2000, val)
     if(i != index) {
     	waitAndRemove(2000, val)
     }
@@ -121,21 +131,71 @@ function createSectionContent(sectionName, index) {
   if(sectionName == "Countdown") {
     console.log("In if sectionName == countdown")
     createCountdown(index);
+  } else if(sectionName == "Lamp") {
+    console.log("In if sectionName == lamp")
+    onoff = [0,0,0];
+    createLampSection(index)
+  } else if(sectionName == "Error") {
+    console.log("In if sectionName == error")
+    createErrorSection(index)
+  } else if(sectionName == "Upgrade") {
+    console.log("In if sectionName == upgrade")
+    createUpgradeSection(index)
   }
 }
 
+function createErrorSection(index) {
+  console.log("")
+  console.log("Login -> validate can be trigger multiple times, effect -> that create multiple menu, solution -> restreint to only one click")
+  console.log("Menu -> when show can be clicked before animation end, effect -> that create new page + item of the menu, solution -> destroy menu when section showed")
+}
+
+function createUpgradeSection(index) {
+  console.log("")
+  console.log("Find better menu")
+  console.log("Find better transition")
+}
+
 function createLampSection(index) {
-	var lamp = "<div id=\"lamp\">" +
-		  "<div id=\"lamp-body\"></div>" +
-		  "<div id=\"lamp-body-shadow\"></div>"+
-		  "<div id=\"lamp-trigger\"></div>"+
-		  "<div id=\"lamp-trigger-holder\"></div>"+
-		  "<div id=\"lamp-ray\"></div>"+
+  var lampContent = document.createElement("div")
+  lampContent.classList.add("lamp-content")
+	for(var i = 0; i < 3; i++) {
+		createLamp(lampContent)
+  }
+  var el = document.getElementById("section-" + index);
+  el.appendChild(lampContent)
+	getElByCl("lamp-trigger-holder").onclick = function() {triggerLamp(0);}
+	getElByCl("lamp-trigger-holder",1).onclick = function() {triggerLamp(1);}
+	getElByCl("lamp-trigger-holder",2).onclick = function() {triggerLamp(2);}
+	getElByCl("lamp-trigger").addEventListener('animationend', () => {getElByCl("lamp-trigger").style.animation = "";});
+	getElByCl("lamp-trigger",1).addEventListener('animationend', () => {getElByCl("lamp-trigger",1).style.animation = "";});
+	getElByCl("lamp-trigger",2).addEventListener('animationend', () => {getElByCl("lamp-trigger",2).style.animation = "";});
+}
+
+function triggerLamp(id) {
+  getElByCl("lamp-trigger",id).style.animation = "1s turnlightonoff 1"
+  wait(400);
+  if(!onoff[id]) {
+    var bg = "radial-gradient(circle at 105px 80px, rgba(206,208,159,1) 0%, rgba(107,121,9,0) 50%)";
+    getElByCl("lamp",id).style.background = bg;
+    var ds = "drop-shadow(0 0 0.75rem rgb(228,225,193))";
+    getElByCl("lamp-body",id).style.filter = ds;
+  } else {
+    getElByCl("lamp",id).style.background = "";
+    getElByCl("lamp-body",id).style.filter = "";
+  }
+  onoff[id] = !onoff[id];
+}
+
+function createLamp(lampContent) {
+	var lamp = "<div class=\"lamp\">" +
+		  "<div class=\"lamp-body\"></div>" +
+		  "<div class=\"lamp-body-shadow\"></div>"+
+		  "<div class=\"lamp-trigger\"></div>"+
+		  "<div class=\"lamp-trigger-holder\"></div>"+
+		  "<div class=\"lamp-ray\"></div>"+
 			"</div>"
-  var el = document.getElementById("section-" + index)
-  el.append(lamp)
-  console.log("END - createLampSection")
-  
+  lampContent.insertAdjacentHTML( 'beforeend', lamp );  
 }
 
 function createCountdown(index) {
@@ -147,10 +207,10 @@ function createCountdown(index) {
       "<div class=\"number-content\"><div id=\"minutes\" class=\"number\">*</div><div class=\"label\">minutes</div></div>" +
       "<div class=\"number-content\"><div id=\"seconds\" class=\"number\">*</div><div class=\"label\">seconds</div></div>" +
     "</div>" +
+    "<div><img src=\"img/DG-logo.png\"></div>" +
   "</div>";
   var el = document.getElementById("section-" + index);
   el.insertAdjacentHTML( 'beforeend', countdown );
-  console.log("END - createCountdown")
     
   // Set the date we're counting down to
   var countDownDate = new Date("Aug 27, 2021 21:30:00").getTime();
