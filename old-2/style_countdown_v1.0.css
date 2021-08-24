@@ -1,0 +1,38 @@
+.countdown {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .countdown .number-content {
+    min-width: 5vw;
+    width: 5vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+  }
+  
+  .countdown div .number {
+    font-size: 2.75em;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .countdown div .label {
+    text-transform: uppercase;
+  }
+  
+  .section-content h1 {  
+    font-size: 1.75em;
+    text-transform: uppercase;
+  }
+
+  #countdown div img {      
+    height: 10vh;
+    margin: 5vh;
+    opacity: 0.5;
+  }

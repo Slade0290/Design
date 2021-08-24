@@ -10,10 +10,10 @@ function getElByCl(cl, def = 0) {
 function createSection() {
 	var content = document.getElementById("content")
   content.style.display = "grid"
-  content.style.gridTemplateColumns = "1fr 1fr"
-  content.style.gridTemplateRows = "1fr"
+  content.style.gridTemplateColumns = "1fr 1fr 1fr"
+  content.style.gridTemplateRows = "1fr 1fr"
 	var arr = []
-  var titles = ["Countdown", "Nothing here"]
+  var titles = ["Lamp", "Invaders", "Cellular", "Countdown", "Upgrade", "Error"]
   for(var i = 1; i < titles.length+1; i++) {
     arr.push(getRandomColor())
     addSection(content, arr, titles, i)
